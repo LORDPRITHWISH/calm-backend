@@ -66,6 +66,9 @@ app.post("/api/v1/login", async (req, res) => {
 app.get("/api/v1/healthcheck", (req, res) => {
   res.json({ message: "Healthcheck is working" });
 });
+app.get("/api/v1/env", (req, res) => {
+  res.json({ message: `it is ${process.env.NAME}` });
+});
 
 const authenticate = (req, res, next) => {
   const token = req.headers.authorization?.split(" ")[1];
@@ -203,7 +206,7 @@ app.post("/api/v1/emotional_support_chat", authenticate, async (req, res) => {
     }
 
     const response = await handleChatMessage({
-      userId:"ca4d1a68-f116-4964-9745-749244b7d8f2",
+      userId: "ca4d1a68-f116-4964-9745-749244b7d8f2",
       message: {
         role: "user",
         content: message,
